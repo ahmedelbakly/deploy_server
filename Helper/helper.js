@@ -11,21 +11,25 @@ const userSchema = new Schema({
 
 const User = mongoose.model("User", userSchema);
 
-const getUser = (req, res, next) => {
-  const users = User.find();
+const getUser = async(req, res, next) => {
+  const users = await User.find();
 
   res.json(users);
 };
 
 const addUser = async (req, res, next) => {
-
+try {
   const user = await User.create({
     name: "ahmed",
     lastName: "gamal",
     age: 35,
   });
 
-  res.json({user, userId:user.id});
+  res.json(user);
+} catch (error) {
+console.log(error)
+}
+  
 };
 
 router.get("/user/getall", getUser);
