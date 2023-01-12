@@ -22,7 +22,7 @@ const connect = async() => {
    
     return connect
       ? console.log("DB is connected")
-      : console.log("DB is not connected");
+      : console.log("DB is not connected now");
   } catch (error) {
     throw error;
   }
