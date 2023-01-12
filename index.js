@@ -4,6 +4,34 @@ const path = require('path')
 const app = express()
 const cors = require('cors')
 const port =  process.env.PORT || 3000
+const userRouter = require("./Helper/helper")
+
+
+///////////////////////////////////////////////////
+const mongoose = require('mongoose');
+
+const connect = async() => {
+  try {
+    mongoose.set('strictQuery', false);
+    const connect = mongoose.connect(process.env.DB_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      
+    });
+   
+   
+    return connect
+      ? console.log("DB is connected")
+      : console.log("DB is not connected");
+  } catch (error) {
+    throw error;
+  }
+};
+
+connect();
+
+
+//////////////////////////////////////////////////////
 const ope = {
     root :path.join(__dirname, 'public')
 }
@@ -13,6 +41,8 @@ app.use(cors({
     origin:"*"
 }))
 console.log(process.env.PORT);
+
+app.use("/api",userRouter)
 
 app.get('/api', (req, res) => {
   res.send('Hello World!')
