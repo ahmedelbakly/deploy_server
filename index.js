@@ -40,7 +40,7 @@ app.use(express.json())
 app.use(cors({
     origin:"*"
 }))
-console.log(process.env.PORT);
+
 
 app.use("/api",userRouter)
 
