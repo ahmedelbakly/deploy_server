@@ -18,14 +18,14 @@ const getUser = (req, res, next) => {
 };
 
 const addUser = async (req, res, next) => {
-  
+
   const user = await User.create({
     name: "ahmed",
     lastName: "gamal",
     age: 35,
   });
 
-  res.json(user);
+  res.json({user, userId:user.id});
 };
 
 router.get("/user/getall", getUser);
