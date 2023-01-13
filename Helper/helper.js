@@ -31,7 +31,19 @@ console.log(error)
 }
   
 };
+const deleteUser = async (req, res, next) => {
+  const {id}=req.params;
+try {
+ await User.deleteOne({_id:id})
+
+  res.json("user is delete now form db");
+} catch (error) {
+console.log(error)
+}
+  
+};
 
 router.get("/user/getall", getUser);
 router.post("/user/addUser", addUser);
+router.delete("/user/deleteUser/:id", deleteUser);
 module.exports = router;
